@@ -7,8 +7,11 @@ Simple app for exploring the mandlebrot set as ascii
 """
 import cmath
 
-# function to decide whether complex number c is in the mandelbrot set
 def isInTheSet(z,c,iterations, maxIterations=100, magnitudeLimit=2):
+    """
+    function to decide whether complex number c is in the mandelbrot set
+    """
+    
     if iterations > maxIterations:
         return -1
     elif abs(z) > magnitudeLimit:
@@ -16,17 +19,29 @@ def isInTheSet(z,c,iterations, maxIterations=100, magnitudeLimit=2):
     else:
         return isInTheSet(z**2+c, c, iterations+1, maxIterations, magnitudeLimit)
 
-# functions to return different characters depending on number of iterations:
+""" 
+functions to return different characters depending on number of iterations:
+"""
+
 def justStar(x):
+    """
+    All characters will be *
+    """
     return "*"
 
 def asciiOrder(x):
+    """
+    Use printable ascii characters in table order
+    """
     if x+40>126:
         return chr(126)
     else:
         return chr(x+40)
 
 def asciiGreyScale(x):
+    """
+    Map characters according to weight as a rough greyscale
+    """
     scale = " .,-~:=+*&#%$@"
     if x>=len(scale):
         return "@"
@@ -34,17 +49,22 @@ def asciiGreyScale(x):
         return scale[x]
 
 
-# rotate a complex number around the origin by a given angle in rads
 def rotate(complexNumber, angle):
+    """ 
+    rotate a complex number around the origin by a given angle in rads
+    """
     polared_complex=cmath.polar(complexNumber)
     new_angle=angle+polared_complex[1]
     return cmath.rect(polared_complex[0],new_angle)
 
 
-# generate the string representing the sampled points on the complex plane
-# through a viewport defined by width, height, angle, xOrigin and yOrigin.
-# xmax and ymax set the width and height of the output in characters 
 def generateManlebrotString(width, height, xOrigin, yOrigin, angle=0, xmax=80, ymax= 25, func=asciiGreyScale):
+    """
+    generate the string representing the sampled points on the complex plane
+    through a viewport defined by width, height, angle, xOrigin and yOrigin.
+    xmax and ymax set the width and height of the output in characters 
+    """
+
     output = ""
             
     for j in range(ymax):
