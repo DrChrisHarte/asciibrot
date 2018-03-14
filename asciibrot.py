@@ -83,7 +83,9 @@ def generateManlebrotString(width, height, xOrigin, yOrigin, angle=0, xmax=80, y
     return output
         
 
-# example invocation to print the whole set:
-
-print(generateManlebrotString(4,3,-2.4,-1.52,xmax=115,ymax=35,angle=0,func=asciiGreyScale))      
+if __name__ == "__main__":
+    """
+    example invocation to print the whole set:
+    """
+    print(generateManlebrotString(4,3,-2.4,-1.52,xmax=115,ymax=35,angle=0,func=asciiGreyScale))      
         
